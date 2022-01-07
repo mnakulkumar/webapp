@@ -17,5 +17,8 @@ people['Robot'] = { 'Name': 'Marvin',
 					'Home Planet': 'Unknown' }
 
 
-for k,v in people.items():
-	f
+import pprint
+pprint.pprint(people)
+
+people['Arthur']
+people['Arthur']['Occupation']
