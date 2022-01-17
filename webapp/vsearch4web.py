@@ -1,12 +1,20 @@
-def search4vowels(word:str) -> set:
-	"""Display any vowels found in a supplied-for word."""
-	vowels = set('aeiou')
-	return vowels.intersection(set(word))
+from flask import Flask, render_template, request
+from vsearch import search4letters
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello() -> str:
+	return 'Hello world from Flask!'
+
+@app.route('/search4', methods=['POST'])
+def do_search() -> str:
+	phrase = request.form['phrase']
+	letters = request.form['letters']
+	return str(search4letters(phrase, letters)) 
+
+@app.route('/entry')
+def entry_page() -> 'html':
+	return render_template('entry.html', the_title ='Welcome to search4letters on the web!')
 	
-#print(search4vowels(input("Enter a word: ")))
-
-def search4letters(phrase:str, letters:str='aeiou') -> set:
-	"""Return a set of the 'letters' found in 'phrase'."""
-	return set(letters).intersection(set(phrase))
-
-#print(search4letters(input("Input a string"),input("input a string")))
+app.run(debug=True)
