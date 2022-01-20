@@ -19,6 +19,10 @@ def do_search() -> 'html':
 @app.route('/entry')
 def entry_page() -> 'html':
 	return render_template('entry.html', the_title ='Welcome to search4letters on the web!')
+
+def log_request(req: 'flask_request', res :str) -> None:
+	with open('vsearch.log', 'a') as search:
+		print(req, res, file = log)
 	
 if __name__ == '__main__':
 	app.run(debug=True) 
